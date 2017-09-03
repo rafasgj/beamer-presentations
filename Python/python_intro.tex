@@ -1,0 +1,546 @@
+\documentclass[aspectratio=169,14pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{graphics}
+\usepackage{enumitem}
+
+\usepackage{listings}
+
+\input{../util/python_environment.tex}
+\input{../templates/apple_keynote_black.tex}
+
+% Configura a apresentação para ser executada em tela cheia.
+%\hypersetup{pdfpagemode=FullScreen}
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+
+%
+% Modify from here!
+%
+
+\title{Linguagem de Programação\\Python}
+\author{Prof. Me. Rafael Guterres Jeffman}
+%\institute{Semana Acadêmica FURG}
+\date{1$^o$ de Setembro de 2017}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Tipos de Dados
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Números}
+    \begin{description}
+        \setlength\itemsep{0.75em}
+        \item[int] \hfill \\ Python pode utilizar números
+        arbitrariamente grandes como 10**100 (Gogol).
+        \item [float] \hfill \\ Utilizam grande precisão, logo 0.1 + 0.2
+        não é igual a 0.3.
+        \item [complex] \hfill \\ Python tem suporte nativo a números
+        complexos.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Strings}
+    \begin{itemize}[label={}]
+        \item \textit{Strings} são criadas utilizando \texttt{'$\ldots$'}
+        ou \texttt{"$\ldots$"}.
+        \item O tipo de dado criado é {\color{green}\texttt{str}}
+        \item Strings de múltiplas linhas podem ser criadas com
+        \texttt{'''$\ldots$'''} \\
+            $\;\;\;$ \texttt{'''}Este é um texto de \\
+            $\;\;\;$ múltiplas linhas.\texttt{'''}
+        \item Quando não se deseja a criação de caracteres especiais,
+        utiliza-se a \textit{string raw} \\
+            $\;\;\;$r'C:\textbackslash trash'
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Listas}
+    \begin{description}
+        \item[l = {$[1,2,3,4]$}] \hfill \\ Cria uma lista com os elementos $[1,2,3,4]$
+        \item[l{$[0]$}] \hfill \\ Acessa primeiro elemento da lista
+        \item[l{$[-1]$}] \hfill \\ Acessa último elemento da lista.
+        \item[l = {$[0]*10$}] \hfill \\ Cria uma lista com 10 elementos $0$.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \frametitle{\textit{Slicing}}
+    \begin{description}
+        \item[l{$[0:2]$}] \hfill \\ Cria uma lista com os elementos $[1,2]$
+        \item[l{$[2:-1]$}] \hfill \\ Cria uma lista com os elementos $[3,4]$
+        \item[l{$[:]$}] \hfill \\ Duplica uma lista.
+    \end{description}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Estruturas de Controle
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{if - elif - else}
+    \begin{python}
+        if condicao:
+            verdade
+        else:
+            falso
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{while}
+    \begin{python}
+        while condicao:
+            codigo
+        else:
+            codigo executado se condicao falsa.
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{for - in}
+    \begin{python}
+        for variavel in range:
+            codigo
+        else:
+            codigo executado apos todos elementos
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \frametitle{continue, break}
+    \texttt{\color{green}continue} reinicia o laço com o próximo estado.
+    \texttt{\color{green}break} sai do laço, ignorando a clausula
+    \texttt{\color{green}else}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Funções
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Definições}
+    \begin{python}
+        def fib(n):
+             """Compute the n-th Fibonacci number."""
+             a, b = 0, 1
+             for _ in range(n):
+                 a, b = b, a+b
+             return a
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parâmetros}
+    \begin{itemize}
+        \item A passagem de parâmetros é por valor. O valor de
+        objetos passados por parâmetro é a referência ao objeto.
+        \item Não é necessário observar a ordem dos parâmetros,
+        desde que sejam utilizados seus nomes.
+        \item Não há sobrecarga de funções em Python, para simular
+        a sobrecarga, utilize parâmetros com valores \textit{default}.
+        \item Existe uma certa beleza na utilização de número de
+        parâmetros variáveis em Python, mas está fora do escopo desta
+        apresentação.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Escopo}
+    \begin{python}
+        def scope_test():
+            def do_local():
+                spam = "local spam"
+
+            def do_nonlocal():
+                nonlocal spam
+                spam = "nonlocal spam"
+
+            def do_global():
+                global spam
+                spam = "global spam"
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Programação Funcional
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \footnotesize
+    \begin{description}
+        \item[First-class Functions] \hfill \\ As funcões de Python podem ser
+        tratadas como valores e passadas como parâmetros.
+        \item[lambda] \hfill \\  É possível criar funções anônimas e utilizá-las
+        onde se espera uma função qualquer.
+        \item[map]  \hfill \\ Aplica uma função a cada um dos elementos de uma lista.
+        \item[filter]  \hfill \\ Filtra uma lista baseado no resultado de um predicado.
+        \item[functools.reduce]  \hfill \\ Aplica uma função a uma lista, passando como
+        parâmetros o próximo elemento da lista e o resultado parcial.
+        \item[sum]  \hfill \\ Soma todos os elementos de uma lista.
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exemplo de Programação Funcional}
+    \begin{python}
+        map(lambda x: x**2,
+            filter(lambda y: y % 3 == 0, range(25))
+        )
+    \end{python}
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        \Huge Programação Orientada a Objetos
+    \end{center}
+\end{frame}
+\begin{frame}
+    \frametitle{Classes}
+    \begin{itemize}[label={}]
+        \setlength\itemsep{1.5em}
+        \item Python é uma linguagem orientada a objetos.
+        \item É utilizado o conceito de classes.
+        \item A orientação a objetos em Python leva ao extremo o
+        lema "explícito é melhor que implícito".
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Exemplo de Classe}
+    \begin{python}
+        class Complex:
+            def __init__(self, realpart, imagpart):
+                self.r = realpart
+                self.i = imagpart
+            def has_imaginary(self):
+                return self.imagpart != 0
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Herança}
+    \begin{itemize}
+        \item Python implementa o conceito de herança múltipla.
+        \item A primeira classe em uma lista de herança é "mais
+        importante" do que as outras.
+        \item Todo método é um método virtual.
+    \end{itemize}
+    \begin{python}
+        class Veiculo(object):
+            pass
+        class Terrestre(Veiculo):
+            pass
+        class Aquatico(Veiculo):
+            pass
+        class Hovercraft(Terrestre, Aquatico):
+            pass
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Estruturas de Dados
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Pilhas}
+    Listas funcionam muito bem como pilhas (\textit{stacks}):
+    \begin{python}
+        stack = []
+        stack.append(5)
+        stack.append(2)
+        stack.pop()
+        stack.pop()
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Filas}
+    Listas são ineficientes para a utilização como filas, devido à
+    inserção no início da lista ser lenta. Utilize
+    \texttt{\color{green}collections.deque}
+    \begin{python}
+        from collections import deque
+        queue = deque([])
+        deque.append("Eric")
+        deque.append("Graham")
+        deque.popleft()
+        deque.popleft()
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{List Comprehension}
+    Forma concisa de criar listas baseadas em condições. Normalmente
+    mais eficiente que laços implementados \textit{à mão}.
+    \begin{python}
+        squares = [ x**2 for x in range(10) ]
+        different_pairs = [ (x,y) for x in [1,2,3]
+                                  for y in [1,2,3] if x != y ]
+
+        l = [ [1,2,3], [4,5,6], [7,8,9]]
+
+        flat = [ x for sub in l for x in sub ]
+        matrix_3x3 = [ [0]*3 for _ in range(3) ]
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Nested List Comprehension}
+    \begin{python}
+        matrix = [
+            [1, 2, 3, 4],
+            [5, 6, 7, 8],
+            [9, 10, 11, 12],
+        ]
+
+        [[row[i] for row in matrix]
+            for i in range(len(matrix[0]))]
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Conjuntos}
+    \begin{python}
+        basket = {'apple', 'orange', 'apple',
+                  'pear', 'orange', 'banana'}
+
+        'orange' in basket
+
+        a = set('abracadabra')
+        b = set('alacazam')
+        a - b
+        a | b
+        a & b
+        a ^ b
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Dicionários}
+    \begin{python}
+        tel = {'jack': 4098, 'sape': 4139}
+        tel['guido'] = 4127
+        del tel['sape']
+        'jack' not in tel
+
+        squares = { x: x**2 for x in range(5) }
+
+        tel = dict(jack=4098, sape=4139, guido=4127)
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Técnicas para Repetições
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Iteração sobre Dicionários}
+    \begin{python}
+        for k, v in knights.items():
+             print(k, v)
+
+        for k in knights.keys():
+             print(k, knights[v])
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Sequências com Índices}
+    \begin{python}
+        for i, v in enumerate(["tic","tac","toe"])]:
+             print(i, v)
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Sequências Simultâneas}
+    \begin{python}
+         questions = ['name', 'quest', 'favorite color']
+         answers = ['lancelot', 'the holy grail', 'blue']
+
+         for q, a in zip(questions, answers):
+              print('What is your {0}?  It is {1}.'.format(q, a))
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Outras formas de iteração.}
+    \begin{python}
+        for i in reversed(range(1, 10, 2)):
+            print(i)
+
+        for i in sorted(['orange', 'apple', 'pear', 'banana']):
+            print(i)
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Estruturas de Dados Avançadas
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Classe Árvore Binária de Pesquisa}
+    \begin{python}
+class BSTNode (object):
+    def __init__(self, value):
+        self.left = None
+        self.right = None
+        self.value = value
+    def insert(self, value):
+        if value < self.value:
+            if self.left == None: self.left = BSTNode(value)
+            else: self.left = self.left.insert(value)
+        elif value > self.value:
+            if self.right == None: self.right = BSTNode(value)
+            else: self.right = self.right.insert(value)
+        return self
+    \end{python}
+\end{frame}
+\begin{frame}
+    \frametitle{Operador Ternário em Python}
+    \begin{center}
+        \normalsize\ttfamily
+        value\_true {\color{green}if} boolean condition {\color{green}else} value\_false
+    \end{center}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{Revisão da ABP}
+    \begin{python}
+    def insert(self, value):
+        do_insert = lambda n,v: BSTNode(v) if n == None \
+                                else n.insert(v)
+        if value < self.value:
+            self.left = do_insert(self.left, value)
+        elif value > self.value:
+            self.right = do_insert(self.right, value)
+        return self
+    \end{python}
+\end{frame}
+\begin{frame}[fragile]
+    \frametitle{ABP Funcional Insert}
+    \begin{python}
+    from functools import reduce
+
+    bst_insert = lambda n, v: \
+            node(v) if n == None else \
+              node(n.value,bst_insert(n.left,v),n.right) \
+                if v <= n.value else \
+                  node(n.value, n.left, bst_insert(n.right,v))
+
+    bst = reduce(bst_insert, [ 3, 5, 2, 1, 4, 6 ], None)
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Implementação de Algoritmos
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Quicksort}
+    \begin{python}
+     def quicksort(n):
+         def __quicksort(n,s,e):
+             if s <  e:
+                 n[s:e], b, a = partition(n[s:e], pivot(n[s:e]))
+                 __quicksort(n,s,s+b)
+                 __quicksort(n,s+a,e)
+             return n
+
+         __quicksort(n,0,len(n))
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Dijkstra's Tree-way Partition}
+    \begin{python}
+    def partition(a, mid):
+        i,j,n = 0,0,len(a) - 1
+        while j <= n:
+            if a[j] < mid:
+                a[i], a[j] = a[j], a[i]
+                i, j = i+1, j+1
+            elif a[j] > mid:
+                a[j],a[n] = a[n],a[j]
+                n -= 1
+            else: j += 1
+        return a,i,j
+    \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Median-of-Tree Pivot Selection}
+    \begin{python}
+    def pivot(n):
+        mid = len(n) // 2
+        mx = max(n[0],n[mid],n[-1])
+        mn = min(n[0],n[mid],n[-1])
+        if mn <= n[0] <= mx: return n[0]
+        if mn <= n[-1] <= mx: return n[-1]
+        return n[mid]
+    \end{python}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Uma Aplicação de Exemplo
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \huge{Where do we go from here?}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quais os próximos passos?}
+    \begin{itemize}[label={}]
+        \item Módulos.
+        \item Entrada e Saída por arquivos.
+        \item Tratamento de erros e exceções.
+        \item Python Standard Library.
+        \item Pip.
+        \item Django, Flask and the Web.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{E onde estão as informações?}
+    \centering \Large https://docs.python.org/3/tutorial/index.html
+\end{frame}
+
+\begin{frame}
+    \begin{flushright}
+    \huge \textbf{Thank you!} \\
+    \vfill
+    \small \textbf{rafasgj@gmail.com}
+    \vfill
+    \small \textbf{https://github.com/rafasgj/python-furg-2017.git}
+    \end{flushright}
+\end{frame}
+
+\end{document}
