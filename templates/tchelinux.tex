@@ -1,0 +1,45 @@
+\usepackage{tikz}
+
+% set fonts
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{frametitle}{size=\huge}
+
+\def \tuxgaucho {../images/Tuxgaucho.png}
+
+% Adiciona tux gauderio a todos os slides
+\usebackgroundtemplate{
+    \includegraphics[width=2cm]{\tuxgaucho}
+}
+
+% Centraliza os títulos dos slides.
+\setbeamertemplate{frametitle}[default][center]
+
+\newcommand{\titleframe}{%
+    {%
+        \usebackgroundtemplate{%
+            \tikz\node[opacity=0.2]%
+                {\includegraphics[width=1.05\paperheight]{\tuxgaucho}};%
+        }%
+        \begin{frame}%
+            \titlepage%
+        \end{frame}%
+    }%
+}
+
+\newcommand{\goodbyeframe}[1]{%
+    {%
+        \usebackgroundtemplate{%
+            \includegraphics[width=1.05\paperheight]{\tuxgaucho}%
+        }%
+        \begin{frame}%
+            \begin{flushright}%
+                \huge \textbf{Thank you!}%
+                \vfill%
+                \large \textbf{#1}%
+            \end{flushright}%
+        \end{frame}%
+    }%
+}
