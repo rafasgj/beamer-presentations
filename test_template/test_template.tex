@@ -1,11 +1,11 @@
-\documentclass[aspectratio=169,14pt]{beamer}
+\documentclass[aspectratio=169,14pt,usenames,dvipsnames]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[brazil]{babel}
 
 %
 % Change the template under test.
 %
-\input{../templates/tchelinux.tex}
+\input{../templates/fspoa.tex}
 
 % Show presentation in full screen
 %\hypersetup{pdfpagemode=FullScreen}
@@ -25,7 +25,9 @@
 %
 \begin{document}
 
-\titleframe
+\begin{frame}
+    \titlepage
+\end{frame}
 
 \begin{frame}
     \frametitle{Ok\ldots This does work\ldots}
@@ -33,6 +35,8 @@
     \Huge \ldots or not \ldots
 \end{frame}
 
-\goodbyeframe{rafasgj@gmail.com}
+\begin{frame}
+    \Huge Thank You!
+\end{frame}
 
 \end{document}
