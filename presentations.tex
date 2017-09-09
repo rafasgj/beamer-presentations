@@ -21,3 +21,24 @@
 % Hide beamer navigation simbols
 \beamertemplatenavigationsymbolsempty
 
+%
+% Standard frames
+%
+
+% coverframe
+\newcommand{\coverframe}{%
+    \begin{frame} %
+        \titlepage %
+    \end{frame} %
+}
+
+% finalframe{email}
+\newcommand{\finalframe}[1]{%
+    \begin{frame}%
+        \begin{flushright}%
+            \huge \textbf{Thank you!}%
+            \vfill%
+            \large \textbf{#1}%
+        \end{flushright}%
+    \end{frame}%
+}
