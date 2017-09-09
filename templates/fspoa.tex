@@ -1,0 +1,46 @@
+
+\usepackage{tikz}
+
+\def \senaclogo {../images/senac.png}
+
+% set text colors
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{alerted text}{fg=black}
+\setbeamercolor{example text}{fg=black}
+
+% set fonts
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{author}{size=\large}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamerfont{frametitle}{size=\huge}
+
+% setup margin
+\setbeamersize{text margin left=0.5cm,text margin right=0.5cm}
+
+% set frame title posision.
+\setbeamertemplate{frametitle}{%
+    \vspace{0.8cm}\hspace{3.2cm}\insertframetitle\vspace{.8cm}%
+}
+
+% set background
+
+\tikzset{
+    bgblueline/.style  = {draw=Blue, line width=0.75mm,
+                          rotate=210, yshift=2cm, xshift=-9cm},
+    bgorangeline/.style = {draw=BurntOrange, line width=0.75mm,
+                          rotate=200, yshift=1.5cm, xshift=1cm},
+}
+
+\usebackgroundtemplate{
+    \begin{tikzpicture}
+
+        \draw [bgblueline]   (2,3) to[bend left] (-19,0);
+        \draw [bgorangeline] (1,2) to[bend left] (-19,0);
+        \node[xshift=0.5cm,yshift=2cm] at (current page.north west)
+                {\includegraphics[width=3cm]{\senaclogo}};
+    \end{tikzpicture}
+}
+
