@@ -18,5 +18,8 @@
 # temparary files
 *.swp
 
+# other files.
+.exrc
+
 # OS Specific files
 .DS_Store
