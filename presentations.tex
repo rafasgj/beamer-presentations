@@ -1,0 +1,23 @@
+\documentclass[aspectratio=169,14pt,usenames,dvipsnames]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+\newcommand{\loadtheme}[1]{%
+    \input{../templates/#1}%
+}
+\newcommand{\presentationlanguage}[1]{%
+    \usepackage[#1]{babel}%
+}
+
+\newcommand{\usecodingsamples}{%
+    \usepackage{listings}%
+    \input{../util/python_environment.tex}%
+}
+
+% Configura a apresentação para ser executada em tela cheia.
+\newcommand{\setfullscreen}{\hypersetup{pdfpagemode=FullScreen}}
+
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+

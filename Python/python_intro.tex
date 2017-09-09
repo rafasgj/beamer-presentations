@@ -1,18 +1,7 @@
-\documentclass[aspectratio=169,14pt]{beamer}
-\usepackage[utf8]{inputenc}
-\usepackage[brazil]{babel}
-\usepackage{graphics}
-\usepackage{enumitem}
-
-\usepackage{listings}
-
-\input{../util/python_environment.tex}
-\input{../templates/apple_keynote_black.tex}
-
-% Configura a apresentação para ser executada em tela cheia.
-%\hypersetup{pdfpagemode=FullScreen}
-% Hide beamer navigation simbols
-\beamertemplatenavigationsymbolsempty
+\input{../presentations}
+\presentationlanguage{brazil,english}
+\loadtheme{apple_keynote_black.tex}
+\usecodingsamples
 
 %
 % Modify from here!
@@ -50,7 +39,7 @@
 
 \begin{frame}
     \frametitle{Strings}
-    \begin{itemize}[label={}]
+    \begin{itemize}
         \item \textit{Strings} são criadas utilizando \texttt{'$\ldots$'}
         ou \texttt{"$\ldots$"}.
         \item O tipo de dado criado é {\color{green}\texttt{str}}
@@ -214,7 +203,7 @@
 \end{frame}
 \begin{frame}
     \frametitle{Classes}
-    \begin{itemize}[label={}]
+    \begin{itemize}
         \setlength\itemsep{1.5em}
         \item Python é uma linguagem orientada a objetos.
         \item É utilizado o conceito de classes.
@@ -518,7 +507,7 @@ class BSTNode (object):
 
 \begin{frame}
     \frametitle{Quais os próximos passos?}
-    \begin{itemize}[label={}]
+    \begin{itemize}
         \item Módulos.
         \item Entrada e Saída por arquivos.
         \item Tratamento de erros e exceções.

@@ -10,4 +10,4 @@ all: $(patsubst %,%.pdf,$(PALESTRAS))
 .PHONY: all clean
 
 clean:
-	$(RM) *.aux *.dvi *.pdf *.out *.log *.nav *.snm *.toc
+	$(RM) *.aux *.dvi *.pdf *.out *.log *.nav *.snm *.toc *.vrb
