@@ -19,10 +19,13 @@ mkdir "${project}/themes"
 mkdir "${project}/images"
 
 cp "themes/${theme}.tex" "${project}/themes/"
-cat "themes/${theme}.images" | while read img 
-do
-    cp "images/${img}" "${project}/images/"
-done
+if [ -f "themes/${project}.images" ]
+then
+    cat "themes/${theme}.images" | while read img 
+    do
+        cp "images/${img}" "${project}/images/"
+    done
+fi
 
 cp presentations.tex "${project}"
 
