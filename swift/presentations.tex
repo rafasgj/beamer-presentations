@@ -1,0 +1,54 @@
+\documentclass[aspectratio=169,14pt,usenames,dvipsnames]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{calc}
+
+\newcommand{\loadtheme}[1]{%
+    \input{../themes/#1}%
+}
+\newcommand{\presentationlanguage}[1]{%
+    \usepackage[#1]{babel}%
+}
+
+\newcommand{\usecodingsamples}{%
+    \usepackage{listings}%
+    \input{../util/python_environment.tex}%
+}
+
+% Configura a apresentação para ser executada em tela cheia.
+\newcommand{\setfullscreen}{\hypersetup{pdfpagemode=FullScreen}}
+
+% Hide beamer navigation simbols
+\beamertemplatenavigationsymbolsempty
+
+%
+% Standard frames
+%
+
+% coverframe
+\newcommand{\coverframe}{%
+    \begin{frame} %
+        \titlepage %
+    \end{frame} %
+}
+
+% finalframe{email}
+\newcommand{\finalframe}[1]{%
+    \begin{frame}%
+        \begin{flushright}%
+            \huge \textbf{Thank you!}%
+            \vfill%
+            \large \textbf{#1}%
+        \end{flushright}%
+    \end{frame}%
+}
+
+%
+% Useful styles.
+%
+\newcommand{\bigtitle}[1]{%
+    \begin{center}%
+        \Huge {#1}%
+    \end{center}%
+}

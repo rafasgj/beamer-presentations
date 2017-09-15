@@ -1,0 +1,591 @@
+\input{presentations}
+\presentationlanguage{brazil}
+\loadtheme{apple_keynote_black}
+\usecodingsamples
+
+\input{listings/swift_lang}
+
+\title{The Swift Programming Language}
+\author{Prof. Rafael Guterres Jeffman}
+\institute{Faculdade Senac Porto Alegre\\
+Especialização em Desenvolvimento para Dispositivos Móveis}
+\date{Setembro de 2017}
+
+\begin{document}
+
+\coverframe
+
+\begin{frame}[fragile]
+    \frametitle{Hello World}
+
+    \begin{swift}
+        print("Hello World! I'm Swift!")
+    \end{swift}
+\end{frame}
+
+\begin{frame}
+    \bigtitle{The Basics}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Values}
+
+    \begin{swift}
+        // Constants
+        let numberOfClasses = 5
+        // Variables
+        var totalSum = 0.0
+        var i = 0, j = 0, k = 0
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Type Annotation}
+
+    \begin{swift}
+        // Constants
+        let numberOfClasses: Int = 5
+        // Variables
+        var totalSum:: Double = 0.0
+        var yourName: String
+        var red, green, blue: Double
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Tuples}
+
+    \begin{swift}
+        let httpStatus = (404, "Page not found.")
+
+        let status, message = httpStatus
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Optionals}
+    \begin{itemize}
+        \item \textbf{Optionals} quardam valores 'opcionais.'
+        \item A variável com o tipo \textbf{Optional} ou possui um valor
+        associado, ou \textbf{nil}.
+        \item Para acessar o valor de um \textbf{Optional} deve-se
+        "desempacotá-lo" utilzando o operadores \textbf{!} ou \textbf{?}.
+        \item \textbf{Optional} é um tipo de dado genérico, e pode guardar
+        apenas dados com o tipo de dado do dado associado.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Optionals}
+
+    \begin{swift}
+        let possibleNumber = "123"
+        let convertedNumber = Int(possibleNumber)
+        let optString: String? = nil
+        let autoInt: Int! = String("762")
+    \end{swift}
+    \vspace{1cm}
+    \textit{convertNumber} é um \textbf{Optional$<$Int$>$} porque a conversão
+    de uma \textbf{String} em um \textbf{Int} pode falhar.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Optional Binding}
+
+    \begin{swift}
+        if let constantValue = Int("123") {
+            // executed only when conversion works.
+        }
+
+        if let firstNumber = Int("4"),
+            let secondNumber = Int("42"),
+            firstNumber < secondNumber && secondNumber < 100
+        {
+            print("\(firstNumber) < \(secondNumber) < 100")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Operadores}
+
+    \begin{itemize}
+        \item Aritmeticos: + - * / \%
+        \item Comparação: == != $> \; < \; >= \; <=$
+        \item Ternário: $< condition > ? <truth\_value>\;:\;<false\_value> $
+        \item Ternário Optional: $<Optional>\;??\;<default\_value> $
+        \item Range: $0..{<}10$ $1...10$
+        \item Lógino: $!\;\;||\;\;\&\&$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Strings}
+
+    \begin{itemize}
+        \item \textit{Strings} devem estar entre ""
+        \item É possível criar \textit{strings} com múltiplas linhas
+        utilizando """string"""
+        \item \textit{Strings} declaradas com \textbf{var} pdem ser
+        alteradas, se declaradas com \textbf{let}, não podem
+        \item \textit{Srings} são tipos de valores, ou seja, são copiados
+        quando utilizados como argumentos.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Coleções}
+
+    \begin{description}
+        \item[Arrays] \hfill \\
+        \begin{swift}
+    var shoppingList: [String] = ["Eggs", "Milk"]
+    shoppingList.append("Bread")
+    let first = shoppingList[0]
+    let lastItems = shoppingList[1...]
+        \end{swift}
+        \item[Dicionários] \hfill \\
+        \begin{swift}
+    var airports: [String: String] =
+        ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
+    airports["LHR"] = "London"
+    print(airports["YYZ"])  // Optional("Toronto Pearson")
+        \end{swift}
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Repetição: \textbf{for}}
+
+    \begin{swift}
+        for item in shoppingList {
+            print(item)
+        }
+        for (key, value) in airports {
+            print("\(key) : \(value)")
+        }
+        for i in 1...5 {
+            print("The index is \(index)")
+        }
+        for second in 0..<60 {
+            renderSecond(second)
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Repetição: \textbf{while}}
+
+    \begin{swift}
+        while somethingIsTrue {
+            doSomethingElse()
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Repetição: \textbf{repeat}}
+
+    \begin{swift}
+        repeat
+            thisCode()
+        while isThis == true
+        thisRunsWhenSomethingIsFalse()
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{if}}
+
+    \begin{swift}
+        if thisValue \% 2 == 0 {
+            print ("\(thisValue) is even.")
+        } else if thisValue \% 3 == 0 {
+            print ("\(thisValue) divisible by 3.")
+        } else {
+            print ("\(thisValue) is odd.")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{switch}}
+
+    \begin{swift}
+        let someCharacter: Character = "z"
+        switch someCharacter {
+        case "a", "e", "i", "o", "u":
+            print("\someCharacter is a vowel.")
+        case "z":
+            print("The last letter of the alphabet")
+        default:
+            print("Some other character")
+        }
+    \end{swift}
+    \vspace{.5cm}
+    Note que o \textbf{switch} deve tratar todos os valores possíveis
+    para o tipo da variável, ou prover um \textbf{default}.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{switch}}
+
+    \begin{swift}
+        let approximateCount = 62
+        switch approximateCount {
+        case 0:
+            naturalCount = "no"
+        case 1..<5:
+            naturalCount = "a few"
+        case 5..<12:
+            naturalCount = "several"
+        case 12..<100:
+            naturalCount = "dozens of"
+        case 100..<1000:
+            naturalCount = "hundreds of"
+        default:
+            naturalCount = "many"
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{switch}}
+
+    \begin{swift}
+        let somePoint = (1, 1)
+        switch somePoint {
+        case (0, 0):
+            print("\(somePoint) is at the origin")
+        case (_, 0):
+            print("\(somePoint) is on the x-axis")
+        case (0, _):
+            print("\(somePoint) is on the y-axis")
+        case (-2...2, -2...2):
+            print("\(somePoint) is inside the box")
+        default:
+            print("\(somePoint) is outside of the box")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{switch}}
+
+    \begin{swift}
+        let yetAnotherPoint = (1, -1)
+        switch yetAnotherPoint {
+        case let (x, y) where x == y:
+            print("(\(x), \(y)) is on the line x == y")
+        case let (x, y) where x == -y:
+            print("(\(x), \(y)) is on the line x == -y")
+        case let (x, y):
+            print("(\(x), \(y)) is just some arbitrary point")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Transferência de Controle}
+
+    \begin{description}[leftmargin=!,labelwidth=\widthof{\bfseries fallthrough}]
+        \item[continue] Reinicia a iteração em um \textit{loop}.
+        \item[break] Sai do \textit{loop} ou do \textbf{switch}.
+        \item[fallthrough] Segue a execução no próximo caso do \textbf{switch}.
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Funções}
+
+    \begin{swift}
+        func greet(person: String) -> String {
+            let greeting = "Hello, " + person + "!"
+            return greeting
+        }
+
+        greet(person: "John")
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Funções}
+
+    \begin{swift}
+        func greet(_ person: String, with greeting: String) -> String {
+            let greeting = "\(gretting), \(person)!"
+            return greeting
+        }
+
+        greet("John", with: "Good morning")
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Funções}
+
+    \begin{swift}
+        func minMax(array: [Int]) -> (min: Int, max: Int) {
+            var currentMin = array[0]
+            var currentMax = array[0]
+            for value in array[1..<array.count] {
+                if value < currentMin {
+                    currentMin = value
+                } else if value > currentMax {
+                    currentMax = value
+                }
+            }
+            return (currentMin, currentMax)
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{um exemplo mais complexo.}
+
+    \begin{swift}
+        func chooseStepFunction(backward: Bool) -> (Int) -> Int
+        {
+            func stepForward(input: Int) -> Int
+            { return input + 1 }
+
+            func stepBackward(input: Int) -> Int
+            { return input - 1 }
+
+            return backward ? stepBackward : stepForward
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Closures}
+
+    \begin{itemize}
+        \item Swift foi desenvolvida utilizando diversas construções de
+        linguagens funcionais.
+        \item \textit{Closures} são uma forma leve de definir uma função
+        no momento em que elas são necessárias.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Funções como parâmetros.}
+
+    \begin{swift}
+        func backward(_ s1: String, _ s2: String) -> Bool {
+            return s1 > s2
+        }
+        var reversedNames = names.sorted(by: backward)
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Closures  como parâmetros.}
+
+    \begin{swift}
+    var reversedNames =
+        names.sorted(by: {(_ s1: String, _ s2: String) -> Bool in
+            return s1 > s2
+        })
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Inferência de Tipos}
+
+    \begin{swift}
+        var reversedNames = names.sorted(by: { s1, s2 in
+                return s1 > s2
+            })
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Retorno Implícito}
+
+    \begin{swift}
+        var reversedNames =
+            names.sorted(by: { s1, s2 in s1 > s2 })
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Argumentos posicionais}
+
+    \begin{swift}
+        var reversedNames = names.sorted(by: { $0 > $1 })
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Operadores são funções}
+
+    \begin{swift}
+        var reversedNames = names.sorted(by: > )
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Enumerações}
+
+    \begin{swift}
+        enum Direction {
+            case north
+            case south
+            case east
+            case west
+        }
+
+        enum Direction {
+            case north, south, east, west
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Enumerações}
+
+    Quando já se sabe o tipo de dado da enumeração, é possível
+    utilizar apenas o valor desejado.
+    \vspace{0.5cm}
+    \begin{swift}
+        var whereToGo = Direction.west
+        // some code here
+        whereToGo = .north
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Enumerações}
+
+    \begin{swift}
+        enum Operation {
+            case constant (Double)
+            case unary ((Double)->Double)
+            case binary ((Double,Double)->Double)
+            case equals
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Enumerações}
+
+    \begin{swift}
+        let multiply = Operation.binary({ $0 * $1})
+
+        switch operation {
+        case constant (let value):
+            print("Constant = \(value)")
+        case unary (let ufn):
+            print("Unary(5) = \(ufn(5))")
+        case constant (let bfn):
+            print("Binary(-2,7) = \(bfn(-2,7))")
+        case equals:
+            print("There's no associated value")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Classes and Structs}
+
+    \begin{itemize}
+        \item Definem propriedades para armazenar valores
+        \item Definem métodos para prover funcionalidades
+        \item Podem ser extendidas para adicionar novas funcionalidades
+        \item Podem implementar protocolos
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Classes}
+
+    Classes, em Swift, são muito mais parecidas com \textbf{struct} do
+    que em outras linguagens, mas possuem algumas características únicas:
+
+    \begin{itemize}
+        \item Herança pode ser aplicada a classes.
+        \item Pode-se verificar e interpretar o tipo da classe em tempo
+        de execução.
+        \item Destrutores permitem a liberação de recursos alocados pela
+        classe.
+        \item Objetos de classes são referenciados e possuem contagem
+        automática de referência.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Propriedades}
+
+    \begin{swift}
+        class AnotherClass {
+            var aPositiveNumber = 0.0
+            public var computedVariable: Double {
+                get {
+                    return aNumber
+                }
+                set {
+                    if newValue > 0 { aPossitiveNumber = newValue}
+                }
+                willSet { print("Will set to \(newValue)") }
+                didSet { print("Not \(oldValue) anymore.")}
+            }
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Métodos}
+
+    \begin{swift}
+        class Counter {
+            var count = 0
+            func increment() {
+                count += 1
+            }
+            func increment(by amount: Int) {
+                count += amount
+            }
+            func reset() {
+                count = 0
+            }
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Optional Chaining}
+
+    \begin{swift}
+        class Person {
+            var residence: Residence?
+        }
+
+        class Residence {
+            var numberOfRooms = 1
+        }
+
+        if let roomCount = john.residence?.numberOfRooms {
+            print("John's residence has \(roomCount) room(s).")
+        } else {
+            print("Unable to retrieve the number of rooms.")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Type Casting}
+
+    \begin{swift}
+        for item in library {
+            if let movie = item as? Movie {
+                print("Movie: \(movie.name), dir. \(movie.director)")
+            } else if let song = item as? Song {
+                print("Song: \(song.name), by \(song.artist)")
+            }
+        }
+    \end{swift}
+\end{frame}
+
+\end{document}
