@@ -82,7 +82,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
         let possibleNumber = "123"
         let convertedNumber = Int(possibleNumber)
         let optString: String? = nil
-        let autoInt: Int! = String("762")
+        let autoInt: Int! = Int("762")
     \end{swift}
     \vspace{1cm}
     \textit{convertNumber} é um \textbf{Optional$<$Int$>$} porque a conversão
@@ -123,9 +123,9 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Strings}
 
     \begin{itemize}
-        \item \textit{Strings} devem estar entre ""
+        \item \textit{Strings} devem estar entre "$\,\!$"
         \item É possível criar \textit{strings} com múltiplas linhas
-        utilizando """string"""
+        utilizando "$\,\!$"$\,\!$"string "$\,\!$"$\,\!$"
         \item \textit{Strings} declaradas com \textbf{var} pdem ser
         alteradas, se declaradas com \textbf{let}, não podem
         \item \textit{Srings} são tipos de valores, ou seja, são copiados
@@ -198,9 +198,9 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Estruturas de Decisão: \textbf{if}}
 
     \begin{swift}
-        if thisValue \% 2 == 0 {
+        if thisValue % 2 == 0 {
             print ("\(thisValue) is even.")
-        } else if thisValue \% 3 == 0 {
+        } else if thisValue % 3 == 0 {
             print ("\(thisValue) divisible by 3.")
         } else {
             print ("\(thisValue) is odd.")
@@ -215,7 +215,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
         let someCharacter: Character = "z"
         switch someCharacter {
         case "a", "e", "i", "o", "u":
-            print("\someCharacter is a vowel.")
+            print("\(someCharacter) is a vowel.")
         case "z":
             print("The last letter of the alphabet")
         default:
@@ -312,12 +312,13 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Funções}
 
     \begin{swift}
-        func greet(_ person: String, with greeting: String) -> String {
-            let greeting = "\(gretting), \(person)!"
-            return greeting
-        }
+    func greet(_ person: String, with greeting: String)->String
+    {
+        let greeting = "\(gretting), \(person)!"
+        return greeting
+    }
 
-        greet("John", with: "Good morning")
+    greet("John", with: "Good morning")
     \end{swift}
 \end{frame}
 
@@ -344,7 +345,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{um exemplo mais complexo.}
 
     \begin{swift}
-        func chooseStepFunction(backward: Bool) -> (Int) -> Int
+        func chooseStepFunction(backward: Bool) -> (Int)->Int
         {
             func stepForward(input: Int) -> Int
             { return input + 1 }
@@ -375,6 +376,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
         func backward(_ s1: String, _ s2: String) -> Bool {
             return s1 > s2
         }
+
         var reversedNames = names.sorted(by: backward)
     \end{swift}
 \end{frame}
@@ -384,9 +386,10 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 
     \begin{swift}
     var reversedNames =
-        names.sorted(by: {(_ s1: String, _ s2: String) -> Bool in
-            return s1 > s2
-        })
+            names.sorted(by: {
+               (_ s1: String, _ s2: String) -> Bool in
+                    return s1 > s2
+            })
     \end{swift}
 \end{frame}
 
@@ -405,7 +408,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 
     \begin{swift}
         var reversedNames =
-            names.sorted(by: { s1, s2 in s1 > s2 })
+                names.sorted(by: { s1, s2 in s1 > s2 })
     \end{swift}
 \end{frame}
 
@@ -491,10 +494,10 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Classes and Structs}
 
     \begin{itemize}
-        \item Definem propriedades para armazenar valores
-        \item Definem métodos para prover funcionalidades
-        \item Podem ser extendidas para adicionar novas funcionalidades
-        \item Podem implementar protocolos
+        \item Definem propriedades para armazenar valores.
+        \item Definem métodos para prover funcionalidades.
+        \item Podem ser extendidas para adicionar novas funcionalidades.
+        \item Podem implementar protocolos.
     \end{itemize}
 \end{frame}
 
@@ -523,12 +526,12 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
             var aPositiveNumber = 0.0
             public var computedVariable: Double {
                 get {
-                    return aNumber
+                    return aPositiveNumber
                 }
                 set {
                     if newValue > 0 { aPossitiveNumber = newValue}
                 }
-                willSet { print("Will set to \(newValue)") }
+                willSet { print("Will set to \(newValue)" }
                 didSet { print("Not \(oldValue) anymore.")}
             }
         }
@@ -578,13 +581,13 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Type Casting}
 
     \begin{swift}
-        for item in library {
-            if let movie = item as? Movie {
-                print("Movie: \(movie.name), dir. \(movie.director)")
-            } else if let song = item as? Song {
-                print("Song: \(song.name), by \(song.artist)")
-            }
+    for item in library {
+        if let movie = item as? Movie {
+            print("Movie: \(movie.name), dir. \(movie.director)")
+        } else if let song = item as? Song {
+            print("Song: \(song.name), by \(song.artist)")
         }
+    }
     \end{swift}
 \end{frame}
 
