@@ -2,17 +2,18 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage{calc}
 
 \newcommand{\loadtheme}[1]{%
-    \input{../themes/#1}%
+    \input{themes/#1}%
 }
 \newcommand{\presentationlanguage}[1]{%
     \usepackage[#1]{babel}%
 }
 
-\newcommand{\usecodingsamples}{%
+\newcommand{\usecodingsamples}[1]{%
     \usepackage{listings}%
-    \input{../util/python_environment.tex}%
+    \input{listings/#1}%
 }
 
 % Configura a apresentação para ser executada em tela cheia.
@@ -42,3 +43,12 @@
         \end{flushright}%
     \end{frame}%
 }
+
+\newcommand{\bigtitle}[1]{%
+    \begin{frame}%
+        \begin{center}%
+            \Huge {#1}%
+        \end{center}%
+    \end{frame}%
+}
+
