@@ -1,0 +1,174 @@
+\input{presentations}
+
+\loadtheme{apple_keynote_black}
+\presentationlanguage{brazil}
+
+\usecodingsamples{swift}
+
+\title{Tratamento de Erros na Linguagem Swift}
+\author{Prof. Rafael Guterres Jeffman}
+\institute{Faculdade Senac Porto Alegre\\
+Especialização em Desenvolvimento para Dispositivos Móveis}
+\date{Setembro de 2017}
+
+\begin{document}
+
+\coverframe
+
+\begin{frame}
+    \frametitle{Introdução}
+
+    Tratamento de erros é o processo de responder e recuperar a execução
+    do programa, frente a ocorrência de erros.
+
+    \vspace{.7cm}
+
+    Swift provê um excelente mecanismo de suporte para a geração,
+    interceptação, propagação e manipulação de error recuperáveis em
+    tempo de execução.
+\end{frame}
+
+\begin{frame}
+    \frametitle{O protocolo Error}
+
+    Em \textit{Swift} erros são representados por valores que atuaam de
+    acordo com o protocolo \texttt{Error}.
+
+    \vspace{.7cm}
+
+    Os {\color{green}\texttt{enum}} são excelentes formas de agrupar
+    tipos de erros semelhantes.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Definindo um conjunto de erros}
+
+    \begin{swift}
+    enum VendingMachineError: Error {
+        case invalidSelection
+        case insufficientFunds(coinsNeeded: Int)
+        case outOfStock
+    }
+    \end{swift}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Propagando erros}
+    Para propagar erros, uma função deve declarar que ela propaga erros.
+    \vspace{.7cm}
+    Uma função que não declara que propaga erros deve tratá-los
+    internamente.
+
+    \begin{swift}
+        func canThrowAnError() throws -> String
+
+        func errorsWillBeHandled() -> String
+    \end{swift}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Função que pode gerar erro}
+    \begin{swift}
+    class VendingMachine {}
+        func vend(itemNamed name: String) throws {
+            guard let item = inventory[name] else {
+                throw VendingMachineError.invalidSelection
+            }
+            guard item.count > 0 else {
+                throw VendingMachineError.outOfStock
+            }
+
+            guard item.price <= coinsDeposited else {
+                throw VendingMachineError.insufficientFunds(coinsNeeded: item.price - coinsDeposited)
+            }
+            ...
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Invocando o método.}
+    Ao invocar o método \texttt{buyFavoriteSnack}, se um erro ocorrer,
+    ele será repassado adiante.
+
+    \begin{swift}
+    func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws {
+        let snackName = favoriteSnacks[person] ?? "Candy Bar"
+        try vendingMachine.vend(itemNamed: snackName)
+    }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Tratando erros com \texttt{try-catch}}
+    \begin{swift}
+do {
+    try buyFavoriteSnack(person: "Alice",
+                         vendingMachine: vendingMachine)
+} catch VendingMachineError.invalidSelection {
+    print("Invalid Selection.")
+} catch VendingMachineError.outOfStock {
+    print("Out of Stock.")
+} catch VendingMachineError.insufficientFunds(let coinsNeeded) {
+    print("Please insert an additional \(coinsNeeded) coins.")
+}
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Erros e Optionals}
+
+    \begin{swift}
+    func someThrowingFunction() throws -> Int {
+        // ...
+    }
+
+    let x = try? someThrowingFunction()
+    \end{swift}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Ignorando erros}
+
+    Quando você tem certeza que um método não vai falhar, você pode
+    utilizar o {\color{green} \texttt try!} e ignorar qualquer erro. Se
+    um erro ocorrer, a aplicação será encerrada.
+    \vspace{.7cm}
+    \begin{swift}
+let photo = try! loadImage(atPath: "./John Appleseed.jpg")
+    \end{swift}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Garantindo a liberação de recursos}
+    \begin{swift}
+    func processFile(filename: String) throws {
+        if exists(filename) {
+            let file = open(filename)
+            defer {
+                close(file)
+            }
+            while let line = try file.readline() {
+                // Work with the file.
+            }
+            // close(file) is called here,
+            // at the end of the scope.
+        }
+    }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Defer}
+    O {\color{green}\texttt{defer}} pode ser utilizado mesmo sem o
+    tratamento de erros.
+    \vspace{.75cm}
+    Você pode definir diversos blocos {\color{green}\texttt{defer}},
+    que serão executados em ordem inversa da definição (pilha).
+\end{frame}
+
+\end{document}
