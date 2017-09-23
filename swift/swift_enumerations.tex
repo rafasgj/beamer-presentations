@@ -1,0 +1,149 @@
+\input{presentations}
+
+\presentationlanguage{brazil}
+\loadtheme{apple_keynote_black}
+
+\usecodingsamples{swift}
+
+\title{Extensions}
+\subtitle{The Swift Programming Language}
+\author{Prof. Rafael Guterres Jeffman}
+\institute{Faculdade Senac Porto Alegre\\
+Especialização em Desenvolvimento para Dispositivos Móveis}
+\date{Setembro de 2017}
+
+\begin{document}
+
+\coverframe
+
+\begin{frame}
+    \frametitle{Extensions}
+
+    \textit{Extensions} permitem que se adicione novas funcionalidades
+    a classes, \textit{structs}, \textit{enum}, ou protocolos.
+
+    \vspace{0.4cm}
+
+    Você pode utilizar \textit{extensions} mesmo quando não possui o
+    código fonte de uma classe.
+
+    \vspace{0.4cm}
+
+    \textit{Extensions} \textbf{não} permitem que você modifique um
+    comportamento já existente em uma classe.
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Sintaxe}
+    \begin{swift}
+    extension SomeType {
+        // new functionality to add to SomeType goes here
+    }
+
+    extension SomeType: SomeProtocol, AnotherProtocol {
+        // implementation of protocol requirements goes here
+    }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Atributos Calculados}
+    \begin{swift}
+    extension Double {
+        var km: Double { return self * 1_000.0 }
+        var m: Double { return self }
+        var cm: Double { return self / 100.0 }
+        var mm: Double { return self / 1_000.0 }
+        var ft: Double { return self / 3.28084 }
+    }
+    let oneInch = 25.4.mm
+    print("One inch is \(oneInch) meters")
+    let threeFeet = 3.ft
+    print("Three feet is \(threeFeet) meters")
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Métodos}
+    \begin{swift}
+        extension Int {
+            func times(task: () -> Void) {
+                for _ in 0..<self {
+                    task()
+                }
+            }
+        }
+
+        3.times {
+            print("Hello!")
+        }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Métodos Modificadores}
+    \begin{swift}
+    extension Int {
+        mutating func square() {
+            self = self * self
+        }
+    }
+    var someInt = 3
+    someInt.square()
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Índices}
+    \begin{swift}
+    extension Int {
+        subscript(digitIndex: Int) -> Int {
+            var decimalBase = 1
+            for _ in 0..<digitIndex {
+                decimalBase *= 10
+            }
+            return (self / decimalBase) % 10
+        }
+    }
+
+    746381295[0] // returns 5
+    746381295[1] // returns 9
+    746381295[5] // returns 3
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Tipos de Dados Aninhados}
+    \begin{swift}
+    extension Int {
+        enum Kind {
+            case negative, zero, positive
+        }
+        var kind: Kind {
+            switch self {
+            case 0:
+                return .zero
+            case let x where x > 0:
+                return .positive
+            default:
+                return .negative
+            }
+        }
+    }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Limites das Extensions}
+    \begin{itemize}
+        \setlength\itemsep{0.5cm}
+        \item Ao adicionar novos comportamentos, eles estarão
+        disponíveis a qualquer objeto daquela classe.
+        \item \textit{Extensions} não podem adicionar armazenamento ao
+        objeto, logo, só pode incluir atributos calculados.
+        \item \textit{Extensions} são muito úteis, mas não devem ser
+        abusadas!
+    \end{itemize}
+\end{frame}
+
+\end{document}
