@@ -12,6 +12,7 @@
 *.snm
 *.toc
 *.fls
+*.vrb
 *.synctex.gz
 *.fdb_latexmk
 
