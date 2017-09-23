@@ -31,7 +31,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}
     \frametitle{O protocolo Error}
 
-    Em \textit{Swift} erros são representados por valores que atuaam de
+    Em \textit{Swift} erros são representados por valores que atuam de
     acordo com o protocolo \texttt{Error}.
 
     \vspace{.7cm}
@@ -71,20 +71,20 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Função que pode gerar erro}
     \begin{swift}
-    class VendingMachine {}
-        func vend(itemNamed name: String) throws {
-            guard let item = inventory[name] else {
-                throw VendingMachineError.invalidSelection
-            }
-            guard item.count > 0 else {
-                throw VendingMachineError.outOfStock
-            }
-
-            guard item.price <= coinsDeposited else {
-                throw VendingMachineError.insufficientFunds(coinsNeeded: item.price - coinsDeposited)
-            }
-            ...
+class VendingMachine {
+    func vend(itemNamed name: String) throws {
+        guard let item = inventory[name] else
+        { throw VendingMachineError.invalidSelection }
+        guard item.count > 0 else
+        { throw VendingMachineError.outOfStock }
+        guard item.price <= coinsDeposited else {
+            throw VendingMachineError.insufficientFunds(
+                        coinsNeeded: item.price - coinsDeposited
+                    )
         }
+        ...
+    }
+}
     \end{swift}
 \end{frame}
 
@@ -94,7 +94,9 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     ele será repassado adiante.
 
     \begin{swift}
-    func buyFavoriteSnack(person: String, vendingMachine: VendingMachine) throws {
+    func buyFavoriteSnack(person: String,
+                          vendingMachine: VendingMachine) throws
+    {
         let snackName = favoriteSnacks[person] ?? "Candy Bar"
         try vendingMachine.vend(itemNamed: snackName)
     }
@@ -164,9 +166,12 @@ let photo = try! loadImage(atPath: "./John Appleseed.jpg")
 
 \begin{frame}[fragile]
     \frametitle{Defer}
+
     O {\color{green}\texttt{defer}} pode ser utilizado mesmo sem o
     tratamento de erros.
+
     \vspace{.75cm}
+
     Você pode definir diversos blocos {\color{green}\texttt{defer}},
     que serão executados em ordem inversa da definição (pilha).
 \end{frame}
