@@ -46,12 +46,12 @@
 
 % Alter common frames
 
-\renewcommand{\finalframe}[1]{%
+\renewcommand{\finalframe}[2][Thank you!]{%
     \begin{frame}%
         \begin{center}%
-            \huge \textbf{Thank you!}%
+            \huge \textbf{#1}%
             \vfill%
-            \large \textbf{#1}%
+            \large \textbf{#2}%
         \end{center}%
     \end{frame}%
 }

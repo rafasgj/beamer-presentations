@@ -52,12 +52,12 @@
 }
 
 % finalframe{email}
-\newcommand{\finalframe}[1]{%
+\newcommand{\finalframe}[2][Thank you!]{%
     \begin{frame}%
         \begin{flushright}%
-            \huge \textbf{Thank you!}%
+            \huge \textbf{#1}%
             \vfill%
-            \large \textbf{#1}%
+            \large \textbf{#2}%
         \end{flushright}%
     \end{frame}%
 }
