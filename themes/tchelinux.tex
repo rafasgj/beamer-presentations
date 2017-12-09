@@ -29,16 +29,16 @@
     }%
 }
 
-\renewcommand{\finalframe}[1]{%
+\renewcommand{\finalframe}[2][THank you!]{%
     {%
         \usebackgroundtemplate{%
             \includegraphics[width=1.05\paperheight]{\tuxgaucho}%
         }%
         \begin{frame}%
             \begin{flushright}%
-                \huge \textbf{Thank you!}%
+                \huge \textbf{#1}%
                 \vfill%
-                \large \textbf{#1}%
+                \large \textbf{#2}%
             \end{flushright}%
         \end{frame}%
     }%
