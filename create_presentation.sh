@@ -19,11 +19,11 @@ mkdir "${project}/themes"
 mkdir "${project}/images"
 
 cp "themes/${theme}.tex" "${project}/themes/"
-if [ -f "themes/${project}.images" ]
+if [ -f "themes/${theme}.images" ]
 then
     cat "themes/${theme}.images" | while read img 
     do
-        cp "images/${img}" "${project}/images/"
+        cp "themes/images/${img}" "${project}/images/"
     done
 fi
 
