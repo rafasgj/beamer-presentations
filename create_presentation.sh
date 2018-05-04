@@ -35,6 +35,7 @@ cat >"${project}/${project}.tex" <<EOF
 \\loadtheme{${theme}}
 
 \\title{}
+\\subtitle{}
 \\author{}
 \\institute{}
 \\date{}
@@ -47,7 +48,7 @@ cat >"${project}/${project}.tex" <<EOF
     \\frametitle{firstframe}
 \\end{frame}
 
-\\finalframe{}
+\\finalframe[Thank you!]{\url{email@example.com}}
 
 \\end{document}
 
