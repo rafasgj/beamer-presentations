@@ -43,3 +43,15 @@
         \end{frame}%
     }%
 }
+
+\renewcommand{\bigtitle}[1]{%
+    {%
+        \usebackgroundtemplate{%
+        \tikz\node[opacity=0.2]%
+        {\hspace*{7cm}\includegraphics[width=.95\paperheight]{\tuxgaucho}};%
+        }%
+        \begin{frame}%
+        \begin{center}\huge{#1}\end{center}%
+        \end{frame}%
+    }%
+}
