@@ -71,3 +71,17 @@
     \end{frame}%
 }
 
+% bigimage{file}
+\newcommand{\bigimage}[1]{%
+    {%
+        \usebackgroundtemplate{}%
+        \begin{frame}%
+            {%
+            \centering%
+            \includegraphics[height=1.0\paperheight,%
+                             width=0.9\paperwidth,%
+                             keepaspectratio]{#1};%
+            }%
+        \end{frame}%
+    }%
+}
