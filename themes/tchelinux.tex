@@ -7,6 +7,11 @@
 \setbeamerfont{date}{size=\footnotesize}
 \setbeamerfont{frametitle}{size=\huge}
 
+\setlist[itemize]{
+    itemsep=0.25cm,
+    label={{\footnotesize$\bullet$}}
+}
+
 \def \tuxgaucho {images/Tuxgaucho.png}
 
 % Adiciona tux gauderio a todos os slides
@@ -47,8 +52,8 @@
 \renewcommand{\bigtitle}[1]{%
     {%
         \usebackgroundtemplate{%
-        \tikz\node[opacity=0.2]%
-        {\hspace*{7cm}\includegraphics[width=.95\paperheight]{\tuxgaucho}};%
+            \tikz\node[opacity=0.2]%
+                {\hspace*{7cm}\includegraphics[width=.95\paperheight]{\tuxgaucho}};%
         }%
         \begin{frame}%
         \begin{center}\huge{#1}\end{center}%
