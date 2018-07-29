@@ -46,6 +46,11 @@ cat >"${project}/${project}.tex" <<EOF
 
 \\begin{frame}
     \\frametitle{firstframe}
+
+    \\begin{itemize}
+        \\item A first level items.
+        \\item Another first level items.
+    \\end{itemize}
 \\end{frame}
 
 \\finalframe[Thank you!]{\url{email@example.com}}
@@ -58,8 +63,8 @@ cat >"${project}/Makefile" <<EOF
 PALESTRAS=${project}
 
 %.pdf: %.tex
-	pdflatex \$<
-	pdflatex \$<
+	xelatex \$<
+	xelatex \$<
 	\$(RM) *.aux *.dvi *.out *.log *.nav *.snm *.toc *.vrb
 
 all: \$(patsubst %,%.pdf,\$(PALESTRAS))
