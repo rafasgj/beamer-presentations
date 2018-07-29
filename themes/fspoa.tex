@@ -22,25 +22,24 @@
 
 % set frame title posision.
 \setbeamertemplate{frametitle}{%
-    \vspace{0.8cm}\hspace{3.2cm}\insertframetitle\vspace{.8cm}%
+    \vspace{0.9cm}\hspace{2.2cm}\insertframetitle\vspace{.5cm}%
 }
 
 % set background
 
 \tikzset{
-    bgblueline/.style  = {draw=Blue, line width=0.75mm,
-                          rotate=210, yshift=2cm, xshift=-9cm},
-    bgorangeline/.style = {draw=BurntOrange, line width=0.75mm,
+    bgblueline/.style  = {draw=Blue, line width=0.75mm, opacity=0.7,
+                          rotate=210, yshift=3cm, xshift=-9cm},
+    bgorangeline/.style = {draw=BurntOrange, line width=0.75mm, opacity=0.7,
                           rotate=200, yshift=1.5cm, xshift=1cm},
 }
 
 \usebackgroundtemplate{
     \begin{tikzpicture}
-
+        \node[xshift=0.5cm,yshift=2.0cm] at (current page.north west)
+                {\includegraphics[width=2cm]{\senaclogo}};
         \draw [bgblueline]   (2,3) to[bend left] (-19,0);
         \draw [bgorangeline] (1,2) to[bend left] (-19,0);
-        \node[xshift=0.5cm,yshift=2cm] at (current page.north west)
-                {\includegraphics[width=3cm]{\senaclogo}};
     \end{tikzpicture}
 }
 
