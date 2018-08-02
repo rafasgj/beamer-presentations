@@ -73,15 +73,16 @@
 }
 
 % bigimage{file}
-\newcommand{\bigimage}[1]{%
+\newcommand{\bigimage}[2][1.0]{%
     {%
         \usebackgroundtemplate{}%
         \begin{frame}%
             {%
             \centering%
-            \includegraphics[height=1.0\paperheight,%
-                             width=0.9\paperwidth,%
-                             keepaspectratio]{#1};%
+            \makebox[\paperwidth][c]{%
+              \includegraphics[height=#1\paperheight, width=#1\paperwidth,%
+                               keepaspectratio]{#2}%
+              }%
             }%
         \end{frame}%
     }%
