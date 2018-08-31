@@ -1,4 +1,3 @@
-
 \usepackage{tikz}
 
 \def \senaclogo {images/senac.png}
@@ -22,7 +21,7 @@
 
 % set frame title posision.
 \setbeamertemplate{frametitle}{%
-    \vspace{0.9cm}\hspace{2.2cm}\insertframetitle\vspace{.5cm}%
+    \vspace{0.5cm}\hspace{2.5cm}\insertframetitle\vspace{.5cm}%
 }
 
 % set background
@@ -36,7 +35,7 @@
 
 \usebackgroundtemplate{
     \begin{tikzpicture}
-        \node[xshift=0.5cm,yshift=2.0cm] at (current page.north west)
+        \node[xshift=0.5cm,yshift=1.7cm] at (current page.north west)
                 {\includegraphics[width=2cm]{\senaclogo}};
         \draw [bgblueline]   (2,3) to[bend left] (-19,0);
         \draw [bgorangeline] (1,2) to[bend left] (-19,0);
@@ -54,4 +53,3 @@
         \end{center}%
     \end{frame}%
 }
-
