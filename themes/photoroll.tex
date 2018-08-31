@@ -93,7 +93,7 @@
     }%
 }
 
-\newcommand{\imagehorizontal}[2][\ ]{%
+\newcommand{\imagehorizontal}[2]{%
     {%
         \usebackgroundtemplate{
             \vbox to \paperheight{%
@@ -109,13 +109,13 @@
     }%
 }
 
-\newcommand{\imagevertical}[2][\ ]{%
+\newcommand{\imagevertical}[2]{%
     {%
         \usebackgroundtemplate{
             \vspace{2cm} %
             \vbox to \paperheight{%
                 \vfill\vfill\hbox to \paperwidth{%
-                    \hfil\includegraphics[height=0.88\paperheight]{#2}\hfil %
+                    \hfil\includegraphics[height=0.86\paperheight]{#2}\hfil %
                 }%
             }%
         }%
