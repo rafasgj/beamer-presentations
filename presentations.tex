@@ -72,6 +72,18 @@
     \end{frame}%
 }
 
+% citation{cite}{author}
+\renewcommand{\citation}[2]{%
+    \begin{frame}%
+        \begin{center}%
+            \vspace{1cm}
+            \large \textit{"#1"}\\%
+            \vspace{1cm}
+            \footnotesize {#2}%
+        \end{center}%
+    \end{frame}%
+}
+
 % bigimage{file}
 \newcommand{\bigimage}[2][1.0]{%
     {%
