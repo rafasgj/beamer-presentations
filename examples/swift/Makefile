@@ -1,4 +1,4 @@
-PALESTRAS=swift swift_error_handling swift_enumerations
+PALESTRAS=swift swift_error_handling swift_extensions
 
 %.pdf: %.tex
 	pdflatex $<

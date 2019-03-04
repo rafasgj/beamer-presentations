@@ -54,9 +54,9 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Tuples}
 
     \begin{swift}
-        let httpStatus = (404, "Page not found.")
+  let httpStatus = (404, "Page not found.")
 
-        let status, message = httpStatus
+  let status, message = httpStatus
     \end{swift}
 \end{frame}
 
@@ -77,10 +77,10 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Optionals}
 
     \begin{swift}
-        let possibleNumber = "123"
-        let convertedNumber = Int(possibleNumber)
-        let optString: String? = nil
-        let autoInt: Int! = Int("762")
+    let possibleNumber = "123"
+    let convertedNumber = Int(possibleNumber)
+    let optString: String? = nil
+    let autoInt: Int! = Int("762")
     \end{swift}
     \vspace{1cm}
     \textit{convertNumber} é um \textbf{Optional$<$Int$>$} porque a conversão
@@ -91,16 +91,17 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Optional Binding}
 
     \begin{swift}
-        if let constantValue = Int("123") {
-            // executed only when conversion works.
-        }
+  if let constantValue = Int("123") {
+      // executed only when conversion works.
+  }
 
-        if let firstNumber = Int("4"),
-            let secondNumber = Int("42"),
-            firstNumber < secondNumber && secondNumber < 100
-        {
-            print("\(firstNumber) < \(secondNumber) < 100")
-        }
+  if let firstNumber = Int("4"),
+      let secondNumber = Int("42"),
+      firstNumber < secondNumber &&
+      secondNumber < 100
+  {
+    print("\(firstNumber)<\(secondNumber)<100")
+  }
     \end{swift}
 \end{frame}
 
@@ -137,17 +138,26 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \begin{description}
         \item[Arrays] \hfill \\
         \begin{swift}
-    var shoppingList: [String] = ["Eggs", "Milk"]
-    shoppingList.append("Bread")
-    let first = shoppingList[0]
-    let lastItems = shoppingList[1...]
+var shoppingList: [String] = ["Eggs","Milk"]
+shoppingList.append("Bread")
+let first = shoppingList[0]
+let lastItems = shoppingList[1...]
         \end{swift}
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Coleções}
+
+    \begin{description}
         \item[Dicionários] \hfill \\
         \begin{swift}
-    var airports: [String: String] =
-        ["YYZ": "Toronto Pearson", "DUB": "Dublin"]
-    airports["LHR"] = "London"
-    print(airports["YYZ"])  // Optional("Toronto Pearson")
+var airports: [String: String] =
+    ["YYZ": "Toronto Pearson",
+     "DUB": "Dublin"]
+airports["LHR"] = "London"
+print(airports["YYZ"])
+    // Optional("Toronto Pearson")
         \end{swift}
     \end{description}
 \end{frame}
@@ -159,12 +169,21 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
         for item in shoppingList {
             print(item)
         }
+
         for (key, value) in airports {
             print("\(key) : \(value)")
         }
+    \end{swift}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Repetição: \textbf{for}}
+
+    \begin{swift}
         for i in 1...5 {
             print("The index is \(index)")
         }
+
         for second in 0..<60 {
             renderSecond(second)
         }
@@ -196,39 +215,45 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Estruturas de Decisão: \textbf{if}}
 
     \begin{swift}
-        if thisValue % 2 == 0 {
-            print ("\(thisValue) is even.")
-        } else if thisValue % 3 == 0 {
-            print ("\(thisValue) divisible by 3.")
-        } else {
-            print ("\(thisValue) is odd.")
-        }
+    if thisValue % 2 == 0 {
+        print ("\(thisValue) is even.")
+    } else if thisValue % 3 == 0 {
+        print ("\(thisValue) divisible by 3.")
+    } else {
+        print ("\(thisValue) is odd.")
+    }
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Estruturas de Decisão: \textbf{switch}}
 
-    \begin{swift}
-        let someCharacter: Character = "z"
-        switch someCharacter {
-        case "a", "e", "i", "o", "u":
-            print("\(someCharacter) is a vowel.")
-        case "z":
-            print("The last letter of the alphabet")
-        default:
-            print("Some other character")
-        }
-    \end{swift}
     \vspace{.5cm}
-    Note que o \textbf{switch} deve tratar todos os valores possíveis
-    para o tipo da variável, ou prover um \textbf{default}.
+    \begin{swift}
+let someCharacter: Character = "z"
+switch someCharacter {
+case "a", "e", "i", "o", "u":
+    print("\(someCharacter) is a vowel.")
+case "z":
+    print("The last letter of the alphabet")
+default:
+    print("Some other character")
+}
+\end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Estruturas de Decisão: \textbf{switch}}
 
-    \begin{swift}
+    \vspace{.5cm}
+    {\Large Todos os valores possíveis para o tipo da variável devem ser
+    tratados no \textbf{switch}, ou um \textbf{default}.}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Estruturas de Decisão: \textbf{switch}}
+
+    \begin{swift}[basicstyle=\footnotesize]
         let approximateCount = 62
         switch approximateCount {
         case 0:
@@ -250,7 +275,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Estruturas de Decisão: \textbf{switch}}
 
-    \begin{swift}
+    \begin{swift}[basicstyle=\footnotesize]
         let somePoint = (1, 1)
         switch somePoint {
         case (0, 0):
@@ -270,7 +295,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Estruturas de Decisão: \textbf{switch}}
 
-    \begin{swift}
+    \begin{swift}[basicstyle=\footnotesize]
         let yetAnotherPoint = (1, -1)
         switch yetAnotherPoint {
         case let (x, y) where x == y:
@@ -323,7 +348,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Funções}
 
-    \begin{swift}
+    \begin{swift}[basicstyle=\small]
         func minMax(array: [Int]) -> (min: Int, max: Int) {
             var currentMin = array[0]
             var currentMax = array[0]
@@ -342,17 +367,17 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{um exemplo mais complexo.}
 
-    \begin{swift}
-        func chooseStepFunction(backward: Bool) -> (Int)->Int
-        {
-            func stepForward(input: Int) -> Int
-            { return input + 1 }
+    \begin{swift}[basicstyle=\small]
+func chooseStepFunction(backward: Bool) -> (Int)->Int
+{
+    func stepForward(input: Int) -> Int
+    { return input + 1 }
 
-            func stepBackward(input: Int) -> Int
-            { return input - 1 }
+    func stepBackward(input: Int) -> Int
+    { return input - 1 }
 
-            return backward ? stepBackward : stepForward
-        }
+    return backward ? stepBackward : stepForward
+}
     \end{swift}
 \end{frame}
 
@@ -370,12 +395,12 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Funções como parâmetros.}
 
-    \begin{swift}
-        func backward(_ s1: String, _ s2: String) -> Bool {
-            return s1 > s2
-        }
+    \begin{swift}[basicstyle=\small]
+func backward(_ s1: String, _ s2: String) -> Bool {
+    return s1 > s2
+}
 
-        var reversedNames = names.sorted(by: backward)
+var reversedNames = names.sorted(by: backward)
     \end{swift}
 \end{frame}
 
@@ -383,11 +408,10 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Closures  como parâmetros.}
 
     \begin{swift}
-    var reversedNames =
-            names.sorted(by: {
-               (_ s1: String, _ s2: String) -> Bool in
-                    return s1 > s2
-            })
+reversedNames = names.sorted(by: {
+    (_ s1: String, _ s2: String) -> Bool in
+        return s1 > s2
+})
     \end{swift}
 \end{frame}
 
@@ -395,9 +419,9 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Inferência de Tipos}
 
     \begin{swift}
-        var reversedNames = names.sorted(by: { s1, s2 in
-                return s1 > s2
-            })
+  var reversedNames = names.sorted(by: {
+            s1, s2 in return s1 > s2
+        })
     \end{swift}
 \end{frame}
 
@@ -405,8 +429,8 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Retorno Implícito}
 
     \begin{swift}
-        var reversedNames =
-                names.sorted(by: { s1, s2 in s1 > s2 })
+var reversedNames =
+        names.sorted(by: { s1, s2 in s1 > s2 })
     \end{swift}
 \end{frame}
 
@@ -414,7 +438,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Argumentos posicionais}
 
     \begin{swift}
-        var reversedNames = names.sorted(by: { $0 > $1 })
+var reversedNames = names.sorted(by: {$0 > $1})
     \end{swift}
 \end{frame}
 
@@ -422,7 +446,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Operadores são funções}
 
     \begin{swift}
-        var reversedNames = names.sorted(by: > )
+   var reversedNames = names.sorted(by: > )
     \end{swift}
 \end{frame}
 
@@ -460,19 +484,19 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
     \frametitle{Enumerações}
 
     \begin{swift}
-        enum Operation {
-            case constant (Double)
-            case unary ((Double)->Double)
-            case binary ((Double,Double)->Double)
-            case equals
-        }
+  enum Operation {
+      case constant (Double)
+      case unary ((Double)->Double)
+      case binary ((Double,Double)->Double)
+      case equals
+  }
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Enumerações}
 
-    \begin{swift}
+    \begin{swift}[basicstyle=\small]
         let multiply = Operation.binary({ $0 * $1})
 
         switch operation {
@@ -480,7 +504,7 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
             print("Constant = \(value)")
         case unary (let ufn):
             print("Unary(5) = \(ufn(5))")
-        case constant (let bfn):
+        case binary(let bfn):
             print("Binary(-2,7) = \(bfn(-2,7))")
         case equals:
             print("There's no associated value")
@@ -519,27 +543,27 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Propriedades}
 
-    \begin{swift}
-        class AnotherClass {
-            var aPositiveNumber = 0.0
-            public var computedVariable: Double {
-                get {
-                    return aPositiveNumber
-                }
-                set {
-                    if newValue > 0 { aPossitiveNumber = newValue}
-                }
-                willSet { print("Will set to \(newValue)" }
-                didSet { print("Not \(oldValue) anymore.")}
-            }
+    \begin{swift}[basicstyle=\small]
+class AnotherClass {
+    var aPositiveNumber = 0.0
+    public var computedVariable: Double {
+        get {
+            return aPositiveNumber
         }
+        set {
+            if newValue > 0 { aPossitiveNumber = newValue}
+        }
+        willSet { print("Will set to \(newValue)" }
+        didSet { print("Not \(oldValue) anymore.")}
+    }
+}
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Métodos}
 
-    \begin{swift}
+    \begin{swift}[basicstyle=\small]
         class Counter {
             var count = 0
             func increment() {
@@ -558,34 +582,34 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 \begin{frame}[fragile]
     \frametitle{Optional Chaining}
 
-    \begin{swift}
-        class Person {
-            var residence: Residence?
-        }
+    \begin{swift}[basicstyle=\small]
+class Person {
+    var residence: Residence?
+}
 
-        class Residence {
-            var numberOfRooms = 1
-        }
+class Residence {
+    var numberOfRooms = 1
+}
 
-        if let roomCount = john.residence?.numberOfRooms {
-            print("John's residence has \(roomCount) room(s).")
-        } else {
-            print("Unable to retrieve the number of rooms.")
-        }
+if let roomCount = john.residence?.numberOfRooms {
+    print("John's residence has \(roomCount) room(s).")
+} else {
+    print("Unable to retrieve the number of rooms.")
+}
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Type Casting}
 
-    \begin{swift}
-    for item in library {
-        if let movie = item as? Movie {
-            print("Movie: \(movie.name), dir. \(movie.director)")
-        } else if let song = item as? Song {
-            print("Song: \(song.name), by \(song.artist)")
-        }
-    }
+    \begin{swift}[basicstyle=\small]
+for item in library {
+  if let movie = item as? Movie {
+    print("Movie: \(movie.name), dir. \(movie.director)")
+  } else if let song = item as? Song {
+    print("Song: \(song.name), by \(song.artist)")
+  }
+}
     \end{swift}
 \end{frame}
 

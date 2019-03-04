@@ -14,7 +14,7 @@
                     },
   %keyword4
   morekeywords = [3]{as, dynamicType, is, new, super, self, Self, Type,%
-                     try, catch, throw, true, false, nil, rethrows,
+                     try, catch, throw, throws, true, false, nil, rethrows,%
                      precondition%
                     },
   %keyword5
@@ -38,12 +38,12 @@
   commentstyle = \color{gray},
   morestring = [b]",
   morestring = [b]',
-  stringstyle = \color{purple}
+  stringstyle = \color{magenta!80!white}
 }
 
 \newcommand\swiftstyle{\lstset{language=Swift,
-    basicstyle={\footnotesize\ttfamily},
-    stringstyle=\color{magenta!80!black},
+    basicstyle={\normalsize\ttfamily},
+    stringstyle=\color{magenta!80!white},
     showstringspaces=false
 }}
 
@@ -59,3 +59,4 @@
 \lstinputlisting[#1]{#2}}}
 
 \newcommand\swiftinline[1]{{\pythonstyle\lstinline!#1!}}
+

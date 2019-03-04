@@ -55,22 +55,24 @@ Especialização em Desenvolvimento para Dispositivos Móveis}
 
 \begin{frame}[fragile]
     \frametitle{Propagando erros}
+    
     Para propagar erros, uma função deve declarar que ela propaga erros.
-    \vspace{.7cm}
+    
+    \vspace{.5cm}
     Uma função que não declara que propaga erros deve tratá-los
     internamente.
 
     \begin{swift}
-        func canThrowAnError() throws -> String
+  func canThrowAnError() throws -> String
 
-        func errorsWillBeHandled() -> String
+  func errorsWillBeHandled() -> String
     \end{swift}
 
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Função que pode gerar erro}
-    \begin{swift}
+    \begin{swift}[basicstyle=\footnotesize]
 class VendingMachine {
     func vend(itemNamed name: String) throws {
         guard let item = inventory[name] else
@@ -93,42 +95,42 @@ class VendingMachine {
     Ao invocar o método \texttt{buyFavoriteSnack}, se um erro ocorrer,
     ele será repassado adiante.
 
-    \begin{swift}
-    func buyFavoriteSnack(person: String,
-                          vendingMachine: VendingMachine) throws
-    {
-        let snackName = favoriteSnacks[person] ?? "Candy Bar"
-        try vendingMachine.vend(itemNamed: snackName)
-    }
+    \begin{swift}[basicstyle=\small]
+func buyFavoriteSnack(person: String,
+                      vendingMachine: VendingMachine) throws
+{
+    let snackName = favoriteSnacks[person] ?? "Candy Bar"
+    try vendingMachine.vend(itemNamed: snackName)
+}
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Tratando erros com \texttt{try-catch}}
-    \begin{swift}
-do {
-    try buyFavoriteSnack(person: "Alice",
-                         vendingMachine: vendingMachine)
-} catch VendingMachineError.invalidSelection {
-    print("Invalid Selection.")
-} catch VendingMachineError.outOfStock {
-    print("Out of Stock.")
-} catch VendingMachineError.insufficientFunds(let coinsNeeded) {
-    print("Please insert an additional \(coinsNeeded) coins.")
-}
+    \begin{swift}[basicstyle=\footnotesize]
+  do {
+      try buyFavoriteSnack(person: "Alice",
+                           vendingMachine: vendingMachine)
+  } catch VendingMachineError.invalidSelection {
+      print("Invalid Selection.")
+  } catch VendingMachineError.outOfStock {
+      print("Out of Stock.")
+  } catch VendingMachineError.insufficientFunds(let coinsNeeded) {
+      print("Please insert an additional \(coinsNeeded) coins.")
+  }
     \end{swift}
 \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Erros e Optionals}
 
-    \begin{swift}
-    func someThrowingFunction() throws -> Int {
-        // ...
-    }
+\begin{swift}
+func someThrowingFunction() throws -> Int {
+    // ...
+}
 
-    let x = try? someThrowingFunction()
-    \end{swift}
+let x = try? someThrowingFunction()
+\end{swift}
 
 \end{frame}
 
@@ -139,28 +141,28 @@ do {
     utilizar o {\color{green} \texttt try!} e ignorar qualquer erro. Se
     um erro ocorrer, a aplicação será encerrada.
     \vspace{.7cm}
-    \begin{swift}
+    \begin{swift}[basicstyle=\small]
 let photo = try! loadImage(atPath: "./John Appleseed.jpg")
     \end{swift}
 
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Garantindo a liberação de recursos}
-    \begin{swift}
-    func processFile(filename: String) throws {
-        if exists(filename) {
-            let file = open(filename)
-            defer {
-                close(file)
-            }
-            while let line = try file.readline() {
-                // Work with the file.
-            }
-            // close(file) is called here,
-            // at the end of the scope.
-        }
-    }
+    \frametitle{Liberando de recursos}
+    \begin{swift}[basicstyle=\small]
+  func processFile(filename: String) throws {
+      if exists(filename) {
+          let file = open(filename)
+          defer {
+              close(file)
+          }
+          while let line = try file.readline() {
+              // Work with the file.
+          }
+          // close(file) is called here,
+          // at the end of the scope.
+      }
+  }
     \end{swift}
 \end{frame}
 
