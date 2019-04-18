@@ -9,6 +9,8 @@ EOF
 exit
 }
 
+SRC=`dirname $(readlink -f  "$0")`
+
 project="$1" 
 shift
 theme="`echo $1 | cut -d"." -f1`"
@@ -18,16 +20,17 @@ mkdir "${project}"
 mkdir "${project}/themes"
 mkdir "${project}/images"
 
-cp "themes/${theme}.tex" "${project}/themes/"
-if [ -f "themes/${theme}.images" ]
+cp "${SRC}/themes/${theme}.tex" "${project}/themes/"
+if [ -f "${SRC}/themes/${theme}.images" ]
 then
-    cat "themes/${theme}.images" | while read img 
+    cat "${SRC}/themes/${theme}.images" | while read img 
     do
-        cp "themes/images/${img}" "${project}/images/"
+        cp "${SRC}/themes/images/${img}" "${project}/images/"
     done
 fi
 
-cp presentations.tex "${project}"
+cp ${SRC}/presentations.tex "${project}"
+cp -r ${SRC}/listings "${project}"
 
 cat >"${project}/${project}.tex" <<EOF
 \\input{presentations}
